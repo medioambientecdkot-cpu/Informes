@@ -1240,7 +1240,7 @@ else:
             for p in find_paragraphs_to_remove(doc, s_aysa, "AYSA_STATUS"): remove_paragraph(p)
 
             
-            s_u_pdeg = st.session_state.get('ULTIMA_LEGA_STATUS_WIDGET', 'Tiene ultima LEGA/PDEG')
+            s_u_pdeg = st.session_state.get('ULTIMA_LEGA_STATUS', 'Tiene ultima LEGA/PDEG')
             for p in find_paragraphs_to_remove(doc, s_u_pdeg, "ULTIMA_LEGA_STATUS"): 
                 remove_paragraph(p)
            
