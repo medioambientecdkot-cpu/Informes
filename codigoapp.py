@@ -323,7 +323,7 @@ MARCADORES_CONDICIONALES = {
     },
     "ULTIMOHIDRAULICA_STATUS": {
         "tiene ultimo permiso hidraulica": {"start": "{INICIO_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}", "end": "{FIN_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}"},
-        "no tiene ultimo permiso de hidraulica": {"start": None,  "end": None}
+        "no tiene ultimo permiso de hidraulica": {"start": "{INICIO_NOTIENE_HIDRA}", "end": "{FIN_NOTIENE_HIDRA}"}
     },
     "VUELCO_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}"},
@@ -335,7 +335,7 @@ MARCADORES_CONDICIONALES = {
     },
     "ULTIMOVUELCO_STATUS": {
         "tiene ultimo permiso vuelco": {"start": "{INICIO_ULTIMO_PERMISO_VUELCO_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_VUELCO_OBTENIDO}"},
-        "no tiene ultimo permiso de vuelco": { "start": None, "end": None}
+        "no tiene ultimo permiso de vuelco": { "start": "{INICIO_NOTIENE_VUELCO}", "end": "{FIN_NOTIENE_VUELCO}"}
     },
     "EXPLOTACION_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_ EXPLOTACION_NO_INICIADO_POR_CHI0}"},
@@ -347,7 +347,7 @@ MARCADORES_CONDICIONALES = {
     },
     "ULTIMOEXPLOTACION_STATUS": {
         "tiene ultimo permiso explotacion": {"start": "{INICIO_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}"},
-        "no tiene ultimo permiso de explotacion":  { "start": None, "end": None}
+        "no tiene ultimo permiso de explotacion":  { "start":"{INICIO_NOTIENE_EXP}", "end": "{FIN_NOTIENE_EXP}"}
     },
     "AYSA_STATUS": {
         "Aplica": {"start": "{INICIO_APLICA_AYSA}", "end": "{FIN_APLICA_AYSA}"},
@@ -733,7 +733,7 @@ with tabs[3]:
     st.session_state['RESOL_CONSTANCIA_HIDRAULICA_VIGENTE'] = st.text_input("Resolucion Hidraulica:", key="HIDRAULICA_RESOLUCION")
     st.session_state['EXPEDIENTE_CONSTANCIA_HIDRÁULICA_VIGENTE'] = st.text_input("Expediente Hidraulica:", key="HIDRAULICA_EXPEDIENTE")
     st.session_state['ESTADO_HIDRAULICA'] = st.text_input("Estado de Hidraulica en el portal:", key="HIDRAULICA_ESTADO_PORTAL")
-    st.selectbox("tiene ultimo permiso de hidraulica:", options=["tiene ultimo permiso hidraulica", "no tiene ultimo permiso de hidraulica"],  key="ULTIMOHIDRAULICA_STATUS")
+    st.selectbox("Ultimo permiso de hidraulica:", options=["tiene ultimo permiso hidraulica", "no tiene ultimo permiso de hidraulica"],  key="ULTIMOHIDRAULICA_STATUS")
     st.session_state['FECHA_CONSTANCIA_HIDRAULICA_OBTENIDA'] = st.text_input("Fecha de obtencion ult. permiso Hidraulica:", "...", key="ada_fecha_ult_hidra")
     st.session_state['RESOL_CONSTANCIA_HIDRAULICA_OBTENIDA'] = st.text_input("Resolucion ult. permiso Hidraulica:", "...",  key="ada_resoc_ult_hidra")
     st.session_state['EXPEDIENTE_CONSTANCIA_HIDRAULICA_OBTENIDA'] = st.text_input("Expediente ult. permiso Hidraulica:", "...", key="ada_exp_ult_hidra")
@@ -757,7 +757,7 @@ with tabs[3]:
     st.session_state['RESOL_CONSTANCIA_EXPLOTACION_VIGENTE'] = st.text_input("Resolucion Explotacion:", key="EXPLOTACION_RESOLUCION")
     st.session_state['EXPEDIENTE_CONSTANCIA_EXPLOTACION_VIGENTE'] = st.text_input("Expediente Explotacion:", key="EXPLOTACION_EXPEDIENTE")
     st.session_state['ESTADO_EXPLOTACION'] = st.text_input("Estado de Explotacion en el portal:", key="EXPLOTACION_ESTADO_PORTAL")
-    st.selectbox("tiene ultimo permiso de hidráulica:", options=["tiene ultimo permiso explotacion", "no tiene ultimo permiso de explotacion"],  key="ULTIMOEXPLOTACION_STATUS")
+    st.selectbox("tiene ultimo permiso de explotacion:", options=["tiene ultimo permiso explotacion", "no tiene ultimo permiso de explotacion"],  key="ULTIMOEXPLOTACION_STATUS")
     st.session_state['FECHA_PERMISO_EXPLOTACION_OBTENIDO'] = st.text_input("Fecha de obtencion ult. permiso Explotacion:", "...", key="ada_fecha_ult_exp")
     st.session_state['RESOL_PERMISO_EXPLOTACION_OBTENIDO'] = st.text_input("Resolucion ult. permiso Explotacion:", "...", key="ada_resoc_ult_exp")
     st.session_state['EXPEDIENTE_PERMISO_EXPLOTACION_OBTENIDO'] = st.text_input("Vencimiento ult. permiso Explotacion:", "...", key="ada_exp_ult_vto")
