@@ -721,6 +721,7 @@ with tabs[3]:
     ada_disabled = st.session_state['ADA_STATUS'] == 'Seleccione...' or st.session_state['ADA_STATUS'] == 'No solicitada'
     st.session_state['FECHA_PREFA'] = st.text_input("Fecha de obtención de Prefactibilidad:", "N/A", disabled=ada_disabled, key="ada_FECHA")
     st.session_state['EXPEDIENTE_PREFA'] = st.text_input("Expediente de Prefactibilidad:", "N/A", disabled=ada_disabled, key="ada_EXP")
+    st.session_state['DISPO_PREFA'] = st.text_input("Disposicion de Prefactibilidad:", "N/A", disabled=ada_disabled, key="ada_DISP_PREF")
     st.session_state['VTO_PREFACTIBILIDAD'] = st.text_input("Vencimiento de Prefactibilidad:", "N/A", disabled=ada_disabled, key="ada_VTO")
     st.session_state['NCHI_HIDRAULICA'] = st.text_input("CHi Hidráulica:", "0/1/2/3", disabled=ada_disabled, key="ada_CHI_HID")
     st.session_state['NCHI_EXPLOTACION'] = st.text_input("CHi Explotación:", "0/1/2/3", disabled=ada_disabled, key="ada_CHI_EXP")
