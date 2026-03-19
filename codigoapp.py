@@ -1032,7 +1032,7 @@ else:
                 'FECHA_ULTIMA_LEGA': st.session_state.get('key_hist_lega_fecha_u', ''),
                 'VENCIMIENTO_ULTIMA_LEGA': st.session_state.get('key_hist_lega_vto_u', ''),
                 'EXPEDIENTE_ULTIMA_LEGA': st.session_state.get('key_hist_lega_exp_u', ''),
-                
+                'DISPO_ULTIMA_LEGA_PDEG':st.session_state.get('key_hist_lega_dispo_u',''),
                 'RESIDUOS_ESPECIALES_STATUS': st.session_state.get('RESIDUOS_ESPECIALES_STATUS', ''),
                 'CHE_STATUS': st.session_state.get('CHE_STATUS', ''),
                 'ANIO_CHE': st.session_state.get('ANIO_CHE', ''),
