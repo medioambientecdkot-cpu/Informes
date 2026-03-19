@@ -30,8 +30,8 @@ EXPLOTACION_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tien
 ACUMAR_DETALLE_ESTADOS = ["Seleccione...", "vigente NIA menor a 40", "vigente NIA mayor a 40", "no solicitada", "no aplica"]
 SE_DETALLE_ESTADOS = ["Seleccione...", "No aplica", "Vigente", "En curso", "Vencida", "No solicitada"]
 ULTIMO_CAA_ESTADOS = ["Tiene ultimo caa", "No tiene ultimo caa"]
-ULTIMA_LEGA_ESTADOS = ["tiene ultima Lega", "no tiene ultima lega"]
-ULTIMO_PDEG_ESTADOS = ["Tiene ultimo permiso PDEG", "No tiene ultimo permiso PDEG"]
+ULTIMA_LEGA_ESTADOS = ["Tiene ultima lega", "No tiene ultima LEGA/PDEG", "Tiene ultimo permiso PDEG","La ultima lega es la vigente"]
+
 # --- HALLAZGOS PREDEFINIDOS ---
 HALLAZGOS_PREDEFINIDOS = {
     'Ambiental': [
@@ -310,6 +310,7 @@ MARCADORES_CONDICIONALES = {
         "Tiene ultima lega": {"start": "{INICIO_ULTIMA_LEGA_OBTENIDA}", "end": "{FIN_ULTIMA_LEGA_OBTENIDA}"},
         "No tiene ultima LEGA/PDEG": {"start": "{INICIO_LEGA_NUNCA_OBTENIDA}", "end": "{FIN_LEGA_NUNCA_OBTENIDA}"},
         "Tiene ultimo permiso PDEG": {"start": "{INICIO_ULTIMO_PDEG_OBTENIDO}", "end": "{FIN_ULTIMO_PDEG_OBTENIDO}"},
+        "La ultima lega es la vigente":{"start":None, "end": None}
         
     },
      "HIDRAULICA_STATUS": {
@@ -674,10 +675,10 @@ with tabs[2]:
 # --- SECCIÓN: HISTORIAL ÚLTIMA LEGA ---
     st.header("💨 Historial: Última LEGA")
     
-    st.session_state['ULTIMA_LEGA_STATUS'] = st.selectbox("Estado Última LEGA:", options=["Tiene ultima LEGA", "No tiene ultima LEGA", "Tiene permiso PDEG", "No tiene PDEG","La ultima lega es la vigente"], key="widget_historial_pdeg_status")
+    st.session_state['ULTIMA_LEGA_STATUS'] = st.selectbox("Estado Última LEGA:", options=["Tiene ultima lega", "No tiene ultima LEGA/PDGE", "Tiene permiso PDEG","La ultima lega es la vigente"], key="widget_historial_pdeg_status")
 
     # Lógica de bloqueo alineada
-    u_lega_bloqueo = st.session_state.get('widget_historial_lega_status') == "la ultima lega es la vigente"
+    u_lega_bloqueo = st.session_state.get('widget_historial_lega_status') == "La ultima lega es la vigente"
 
     st.session_state['FECHA_ULTIMA_LEGA_PDEG'] = st.text_input( "Fecha obtención última LEGA/PDEG:", value="dd/mm/aaaa", disabled=u_lega_bloqueo, key="key_hist_lega_fecha_u")
     st.session_state['VENCIMIENTO_ULTIMA_LEGA_PDEG'] = st.text_input( "Vencimiento última LEGA/PDEG:", value="dd/mm/aaaa", disabled=u_lega_bloqueo, key="key_hist_lega_vto_u")
