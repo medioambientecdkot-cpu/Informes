@@ -1244,11 +1244,11 @@ else:
             for p in find_paragraphs_to_remove(doc, s_u_hidraulica, "ULTIMOHIDRAULICA_STATUS"):
                 remove_paragraph(p)
           
-            s_u_vuelco = st.session_state.get('ULTIMOVUELCO_STATUS_WIDGET', 'tiene ultimo permiso vuelco')
+            s_u_vuelco = st.session_state.get('ULTIMOVUELCO_STATUS', 'tiene ultimo permiso vuelco')
             for p in find_paragraphs_to_remove(doc, s_u_vuelco, "ULTIMOVUELCO_STATUS"):
                 remove_paragraph(p)
 
-            s_u_explotacion = st.session_state.get('ULTIMOEXPLOTACION_STATUS_WIDGET', 'tiene ultimo permiso explotacion')
+            s_u_explotacion = st.session_state.get('ULTIMOEXPLOTACION_STATUS', 'tiene ultimo permiso explotacion')
             for p in find_paragraphs_to_remove(doc, s_u_explotacion, "ULTIMOEXPLOTACION_STATUS"):
                 remove_paragraph(p)
 
