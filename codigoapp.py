@@ -675,7 +675,7 @@ with tabs[2]:
 # --- SECCIÓN: HISTORIAL ÚLTIMA LEGA ---
     st.header("💨 Historial: Última LEGA")
     
-    st.session_state['ULTIMA_LEGA_STATUS'] = st.selectbox("Estado Última LEGA:", options=["Tiene ultima lega", "No tiene ultima LEGA/PDGE", "Tiene permiso PDEG","La ultima lega es la vigente"], key="widget_historial_pdeg_status")
+    st.session_state['ULTIMA_LEGA_STATUS'] = st.selectbox("Estado Última LEGA:", options=["Tiene ultima lega", "No tiene ultima LEGA/PDGE", "Tiene ultimo permiso PDEG","La ultima lega es la vigente"], key="widget_historial_pdeg_status")
 
     # Lógica de bloqueo alineada
     u_lega_bloqueo = st.session_state.get('widget_historial_lega_status') == "La ultima lega es la vigente"
