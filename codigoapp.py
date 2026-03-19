@@ -1165,11 +1165,6 @@ else:
             s_u_caa = st.session_state.get('widget_estado_historial_caa', 'No tiene ultimo caa')
             for p in find_paragraphs_to_remove(doc, s_u_caa, "ULTIMO_CAA_STATUS"): remove_paragraph(p)
 
-            s_u_lega = st.session_state.get('ultima_lega_STATUS_WIDGET', 'no tiene ultima lega')
-            for p in find_paragraphs_to_remove(doc, s_u_lega, "ULTIMA_LEGA_STATUS"): remove_paragraph(p)
-
-
-      
             s_renovacion_caa = st.session_state.get('renovacion_caa_STATUS', 'No aplica')
             for p in find_paragraphs_to_remove(doc, s_renovacion_caa, "RENOVACION_CAA_STATUS"): remove_paragraph(p)
 
