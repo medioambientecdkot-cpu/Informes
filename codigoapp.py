@@ -982,7 +982,7 @@ else:
                 'VIGENCIA_CAAP': st.session_state.get('caap_VIGENCIA', ''),
                 'VENCIMIENTO_CAAP': st.session_state.get('caap_VTO', ''),
                 'ESTADO_PORTAL_CAAP': st.session_state.get('caap_ESTADO_PORTAL', ''),
-                'OBSERVACIONES_CAAP': st.session_state.get('caap_OBSERVACIONES', ''),
+                'OBSERVACIONES_EXTRA_CAAP': st.session_state.get('caap_OBSERVACIONES', ''),
 
                 'FECHA_CAAF': st.session_state.get('caaf_FECHA', ''),
                 'EXPEDIENTE_CAAF': st.session_state.get('caaf_EXPEDIENTE', ''),
