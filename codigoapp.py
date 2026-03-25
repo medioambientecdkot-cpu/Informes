@@ -213,7 +213,8 @@ MARCADORES_CONDICIONALES = {
         "No iniciado, CAAP en curso": {"start": "{INICIO_CAAF_NO_INICIADO_CAAP_EN_CURSO}", "end": "{FIN_CAAF_NO_INICIADO_CAAP_EN_CURSO}"},
         "No iniciado, CAAP vencido": {"start": "{INICIO_CAAF_NO_INICIADO_CAAP_VENCIDO}", "end": "{FIN_CAAF_NO_INICIADO_CAAP_VENCIDO}"},
         "Vencido": {"start": "{INICIO_CAAF_VENCIDO}", "end": "{FIN_CAAF_VENCIDO}"},
-        "Eliminar todo": {"start": "{ELIMINAR_TODO_CAAF}", "end": "{FIN_ELIMINAR_TODO_CAAF}"} # Special case for "No aplica"
+        "Vigente": {"start": "{INICIO_CAAF_VIGENTE}", "end": "{FIN_CAAF_VIGENTE}"},
+        "No aplica": {"start": "{INICIO_NO_APLICA_CAAF}", "end": "{FIN_NO_APLICA_CAAF}"} # Special case for "No aplica"
     },
     "ULTIMO_CAA_STATUS": {
         "Tiene ultimo caa": {"start": "{INICIO_ULTIMO_CAA_OBTENIDO}", "end": "{FIN_ULTIMO_CAA_OBTENIDO}"},
