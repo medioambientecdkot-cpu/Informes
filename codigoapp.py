@@ -1159,7 +1159,7 @@ else:
             s_caap = st.session_state.get('caap_CAAP_LOGICA_ESTADOS', 'No aplica')
             for p in find_paragraphs_to_remove(doc, s_caap, "CAAP_STATUS"): remove_paragraph(p)
 
-            s_caaf = st.session_state.get('caaf_CAAF_LOGICA', 'No aplica')
+            s_caaf = st.session_state.get('caaf_CAAF_LOGICA_ESTADOS', 'No aplica')
             if s_caaf == "No aplica": s_caaf = "Eliminar todo"
             for p in find_paragraphs_to_remove(doc, s_caaf, "CAAF_STATUS"): remove_paragraph(p)
 
