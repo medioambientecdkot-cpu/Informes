@@ -11,7 +11,7 @@ from docx.enum.text import WD_COLOR_INDEX
 # ==========================================
 
 # --- CONSTANTES DE ESTADOS PARA DROPDOWNS ---
-CAAP_LOGICA_ESTADOS = ["No aplica","No iniciado, tiene CNCA vigente","No iniciado, tiene CNCA en curso","No iniciado, tiene CNCA vencida / No solicitada)","En curso","Vigente","Vencido"]
+CAAP_LOGICA_ESTADOS = ["No aplica","No iniciado, tiene CNCA vigente","No iniciado, tiene CNCA en curso","No iniciado, tiene CNCA vencida / No solicitada","En curso","Vigente","Vencido"]
 CAAF_LOGICA_ESTADOS = ["No aplica","No iniciado, tiene CAAP vigente","No iniciado, tiene CAAP en curso","No iniciado, tiene CAAP vencida / No solicitada)","En curso","Vigente","Vencido"]
 ADA_DETALLE_ESTADOS = ["Seleccione...", "Prefactibilidad con Chi 0 para todos los permisos","Prefactibilidad superada", "Prefactibilidad vigente", "Prefactibilidad vencida", "No solicitada"]
 RENPRE_DETALLE_ESTADOS = ["Seleccione...", "No aplica", "Esta inscripto y renueva", "Esta inscripto y no renovó", "Aplica pero no esta inscripto"]
@@ -211,7 +211,7 @@ MARCADORES_CONDICIONALES = {
     "CAAF_STATUS": {
         "En curso": {"start": "{INICIO_CAAF_EN_CURSO}", "end": "{FIN_CAAF_EN_CURSO}"}, "vigente": {"start": "{INICIO_CAAF_VIGENTE}", "end": "{FIN_CAAF_VIGENTE}"},
         "No iniciado, CAAP en curso": {"start": "{INICIO_CAAF_NO_INICIADO_CAAP_EN_CURSO}", "end": "{FIN_CAAF_NO_INICIADO_CAAP_EN_CURSO}"},
-        "No iniciado, CAAP vencido": {"start": "{INICIO_CAAF_NO_INICIADO_CAAP_VENCIDO}", "end": "{FIN_CAAF_NO_INICIADO_CAAP_VENCIDO}"},
+        "No iniciado, CAAP vencido / no solicitado": {"start": "{INICIO_CAAF_NO_INICIADO_CAAP_VENCIDO}", "end": "{FIN_CAAF_NO_INICIADO_CAAP_VENCIDO}"},
         "Vencido": {"start": "{INICIO_CAAF_VENCIDO}", "end": "{FIN_CAAF_VENCIDO}"},
         "Vigente": {"start": "{INICIO_CAAF_VIGENTE}", "end": "{FIN_CAAF_VIGENTE}"},
         "No aplica": {"start": "{INICIO_NO_APLICA_CAAF}", "end": "{FIN_NO_APLICA_CAAF}"} # Special case for "No aplica"
@@ -630,7 +630,7 @@ with tabs[1]:
     st.session_state['OBSERVACIONES_EXTRA_CAAP'] = st.text_area("Observaciones extra CAAP:", "", disabled=caap_disabled, key="caap_OBSERVACIONES")
 
     st.header("🌳 CAAF (Aptitud Ambiental - Fase III)")
-    st.session_state['CAAF_LOGICA_ESTADOS'] = st.selectbox("Situación CAAF (Fase III):", options=["No aplica","No iniciado, tiene CAAP vigente","No iniciado, tiene CAAP en curso","No iniciado, tiene CAAP vencida / No solicitada)","En curso","Vigente","Vencido"], key="caaf_CAAF_LOGICA_ESTADOS")
+    seleccion = st.selectbox("Situación CAAF (Fase III):", options=CAAF_LOGICA_ESTADOS,  key="caaf_CAAF_LOGICA_ESTADOS")
     
     st.session_state['FECHA_CAAF'] = st.text_input("Fecha de obtención del CAAF:", "N/A", key="caaf_FECHA")
     st.session_state['EXPEDIENTE_CAAF'] = st.text_input("Expediente del CAAF:", "N/A",  key="caaf_EXPEDIENTE")
