@@ -990,7 +990,7 @@ else:
                 'DISPO_CAAF': st.session_state.get('caaf_DISPO', ''),
                 'ESTADO_CAAF': st.session_state.get('caaf_ESTADO_PORTAL', ''),
                 'VENCIMIENTO_CAAF': st.session_state.get('caaf_VENCIMIENTO', ''),
-                'OBSERVACIONES_CAAF': st.session_state.get('caaf_OBSERVACIONES', ''),
+                'OBSERVACIONES_EXTRA_CAAF': st.session_state.get('caaf_OBSERVACIONES', ''),
 
 
                 'ESTADO_RENOVACION_CAA': st.session_state.get('renovacion_caa_STATUS', ''),
