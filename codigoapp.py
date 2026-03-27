@@ -1061,6 +1061,7 @@ else:
                 'NCHI_EXPLOTACION': st.session_state.get('ada_CHI_EXP', ''),
                 'NCHI_VUELCO': st.session_state.get('ada_CHI_VUE', ''),
                 'VTO_PREFACTIBILIDAD': st.session_state.get('ada_VTO',''),
+                'OBSERVACIONES_PREFA':st.session_state.get ('ada_obs_prefa',''),
                 'ESTADO_PERMISO_HIDRAULICA': st.session_state.get('ESTADO_PERMISO_HIDRAULICA', ''),
                 'ESTADO_PERMISO_EXPLOTACION': st.session_state.get('ESTADO_PERMISO_EXPLOTACION', ''),
                 'ESTADO_PERMISO_VUELCO': st.session_state.get('ESTADO_PERMISO_VUELCO', ''),
