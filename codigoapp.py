@@ -810,13 +810,14 @@ with tabs[5]:
    
 
 
-    st.header("🚧 RENPRE y Seguro Ambiental")
+    st.header("🚧 RENPRE ")
     st.session_state['RENPRE_STATUS'] = st.selectbox("Estado RENPRE:", options=RENPRE_DETALLE_ESTADOS, key="renpre_STATUS")
     renpre_disabled = st.session_state['RENPRE_STATUS'] == 'Seleccione...' or st.session_state['RENPRE_STATUS'] == 'No aplica'
     st.session_state['NUMERO_RENPRE'] = st.text_input("Número de operador RENPRE:", "N/A", disabled=renpre_disabled, key="renpre_NUM")
     st.session_state['VENCIMIENTO_RENPRE'] = st.text_input("Fecha de venciemiento RENPRE:", "N/A", disabled=renpre_disabled, key="renpre_VTO")
 
     st.markdown("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---")
+    st.header("Seguro Ambiental")
     st.session_state['SEGURO_STATUS'] = st.selectbox("Seguro ambiental:", options=["Vigente", "Vencida", "Nunca Tuvo"], key="seguro_STATUS")
     seguro_disabled = st.session_state['SEGURO_STATUS'] == 'Nunca Tuvo'
     st.session_state['NUMERO_POLIZA'] = st.text_input("Nº Póliza:", "N/A", disabled=seguro_disabled, key="seguro_POLIZA_NUM")
