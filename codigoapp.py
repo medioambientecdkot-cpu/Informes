@@ -497,9 +497,6 @@ def reemplazar_marcadores(doc, user_data):
                     if first_run_format['font_size']: new_run.font.size = first_run_format['font_size']
                     if first_run_format['font_color_rgb']: new_run.font.color.rgb = first_run_format['font_color_rgb']
 
-            for run in p.runs:
-                if re.search(r'{\s*[A-Z_]+\s*}', run.text):
-                    run.font.highlight_color = WD_COLOR_INDEX.YELLOW
 
     for p in doc.paragraphs:
         process_container_for_replacements_and_highlights(p)
