@@ -1279,7 +1279,7 @@ else:
                 file_name=file_name,
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
-            st.success("✅ Informe generado y listo para descargar. RECORDA REVISARLO Y AGREGAR LA CONCLUSIONES!!")
+            st.success("✅ Informe generado y listo para descargar. RECORDA REVISARLO, CAMBIAR EL NOMBRE DE EMPRESA Y AGREGAR LA CONCLUSIONES!!")
 
         except Exception as e:
             st.error(f"❌ Error crítico durante la generación del informe: {e}")
