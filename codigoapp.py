@@ -997,7 +997,7 @@ else:
                 'EXPEDIENTE_RENOVACION_CAA': st.session_state.get('renovacion_caa_EXPEDIENTE', ''),
                 'ESTADO_PORTAL_RENOVACION_CAA': st.session_state.get('renovacion_caa_ESTADO_PORTAL', ''),
                 'DISPO_RENOVACION_CAA': st.session_state.get('renovacion_caa_DISPO', ''),
-                'FECHA_VTO_RENOVACION'] = st.session_state.get('renovacion_vto_FECHA', ''),
+                'FECHA_VTO_RENOVACION': st.session_state.get('renovacion_vto_FECHA', ''),
                 # --- HISTORIAL ÚLTIMO CAA ---
                 'FECHA_ULTIMO_CAA': st.session_state.get('input_hist_fecha_caa_u', ''),
                 'EXPEDIENTE_ULTIMO_CAA': st.session_state.get('input_hist_exp_caa_u', ''),
