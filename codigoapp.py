@@ -218,7 +218,8 @@ MARCADORES_CONDICIONALES = {
     },
     "ULTIMO_CAA_STATUS": {
         "Tiene ultimo caa": {"start": "{INICIO_ULTIMO_CAA_OBTENIDO}", "end": "{FIN_ULTIMO_CAA_OBTENIDO}"},
-        "No tiene ultimo caa": {"start": "{INICIO_CAA_NUNCA_OBTENIDO}", "end": "{FIN_CAA_NUNCA_OBTENIDO}"}
+        "No tiene ultimo caa": {"start": "{INICIO_CAA_NUNCA_OBTENIDO}", "end": "{FIN_CAA_NUNCA_OBTENIDO}"},
+        "El ultimo CAA es el obtenido":{"start": None, "end": None}
     },
     "RENOVACION_CAA_STATUS": {
         "En curso": {"start": "{INICIO_RENOVACION_CAA_ENCURSO}", "end": "{FIN_RENOVACION_CAA_ENCURSO}"},
@@ -649,7 +650,7 @@ with tabs[1]:
     # --- BLOQUE ÚNICO: HISTORIAL ÚLTIMO CAA ---
     st.header("📜 Historial: Último CAA")
     
-    st.selectbox("Estado Último CAA:", options=["Tiene ultimo caa", "No tiene ultimo caa"], key="widget_estado_historial_caa")
+    st.selectbox("Estado Último CAA:", options=["Tiene ultimo caa", "No tiene ultimo caa","El ultimo CAA es el obtenido"], key="widget_estado_historial_caa")
 
     # Esta variable define si se bloquean los campos
     u_caa_bloqueo = st.session_state.get('ULTIMO_CAA_STATUS', '') == "no tiene ultimo caa"
