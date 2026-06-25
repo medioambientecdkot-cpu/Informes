@@ -25,9 +25,9 @@ RESIDUOS_ESPECIALES_STATUS_GENERAL = [
 CHE_DETALLE_ESTADOS = [
     "Seleccione...", "Obtuvo CHE alguna vez y esta en curso la renovacion", "No obtuvo CHE previamente y se encuentra en curso", "CHE vigente"
 ]
-HIDRAULICA_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso","Vigente"]
-VUELCO_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso","Vigente"]
-EXPLOTACION_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso","Vigente"]
+HIDRAULICA_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso", "Vigente", "Aptitud de Obra en curso", "Aptitud de Obra vigente", "Aptitud de Obra vigente - Permiso en curso", "Aptitud de Obra vencida", "Vencido"]
+VUELCO_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso", "Vigente", "Aptitud de Obra en curso", "Aptitud de Obra vigente", "Aptitud de Obra vigente - Permiso en curso", "Aptitud de Obra vencida", "Vencido"]
+EXPLOTACION_DETALLE_ESTADOS = ["Seleccione...", "Tramite no iniciado porque tiene CHI 0", "No iniciado, Prefactibilidad vigente", "No iniciado, Prefactibilidad en curso", "No iniciado, Prefactibilidad no solicitada/vencida", "En curso", "Vigente", "Aptitud de Obra en curso", "Aptitud de Obra vigente", "Aptitud de Obra vigente - Permiso en curso", "Aptitud de Obra vencida", "Vencido"]
 ACUMAR_DETALLE_ESTADOS = ["Seleccione...", "vigente NIA menor a 40", "vigente NIA mayor a 40", "no solicitada", "no aplica"]
 SE_DETALLE_ESTADOS = ["Seleccione...", "No aplica", "Vigente", "En curso", "Vencida", "No solicitada"]
 ULTIMO_CAA_ESTADOS = ["Tiene ultimo caa", "No tiene ultimo caa"]
@@ -317,25 +317,38 @@ MARCADORES_CONDICIONALES = {
         "La ultima lega es la vigente":{"start":None, "end": None}
         
     },
-     "HIDRAULICA_STATUS": {
+    "HIDRAULICA_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_POR_CHI0}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_POR_CHI0}"},
-        "No iniciada, tiene Prefactibilida vigente": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VIGENTE}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VIGENTE}"},
-        "No iniciada, Prefactibilidad en curso": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_EN_CURSO}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_EN_CURSO}"},
-        "No iniciada, Prefactibilidad vencida o no iniciada": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VENCIDA_NO_INICIADA}"},
+        "No iniciado, Prefactibilidad vigente": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VIGENTE}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VIGENTE}"},
+        "No iniciado, Prefactibilidad en curso": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_EN_CURSO}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_EN_CURSO}"},
+        "No iniciado, Prefactibilidad no solicitada/vencida": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_CONSTANCIA_HIDRAULICA_NO_INICIADA_PREFA_VENCIDA_NO_INICIADA}"},
         "En curso": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_EN_CURSO}", "end": "{FIN_CONSTANCIA_HIDRAULICA_EN_CURSO}"},
-        "Vigente": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_VIGENTE}", "end": "{FIN_CONSTANCIA_HIDRAULICA_VIGENTE}"}
+        "Vigente": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_VIGENTE}", "end": "{FIN_CONSTANCIA_HIDRAULICA_VIGENTE}"},
+        "Aptitud de Obra en curso": {"start": "{INICIO_APTITUD_HIDRAULICA_EN_CURSO}", "end": "{FIN_APTITUD_HIDRAULICA_EN_CURSO}"},
+        "Aptitud de Obra vigente": {"start": "{INICIO_APTITUD_HIDRAULICA_VIGENTE}", "end": "{FIN_APTITUD_HIDRAULICA_VIGENTE}"},
+        "Aptitud de Obra vigente - Permiso en curso": {"start": "{INICIO_APTITUD_HIDRAULICA_VIGENTE_FASE3_EN_CURSO}", "end": "{FIN_APTITUD_HIDRAULICA_VIGENTE_FASE3_EN_CURSO}"},
+        "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_HIDRAULICA_VENCIDA}", "end": "{FIN_APTITUD_HIDRAULICA_VENCIDA}"},
+        "Vencido": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_VENCIDA}", "end": "{FIN_CONSTANCIA_HIDRAULICA_VENCIDA}"},
+    },
     },
     "ULTIMOHIDRAULICA_STATUS": {
         "tiene ultimo permiso hidraulica": {"start": "{INICIO_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}", "end": "{FIN_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}"},
         "no tiene ultimo permiso de hidraulica": {"start": "{INICIO_NOTIENE_HIDRA}", "end": "{FIN_NOTIENE_HIDRA}"}
     },
     "VUELCO_STATUS": {
+       "VUELCO_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}"},
-        "No iniciada, tiene Prefactibilida vigente": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}"},
-        "No iniciada, Prefactibilidad en curso": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}"},
-        "No iniciada, Prefactibilidad vencida o no iniciada": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}"},
+        "No iniciado, Prefactibilidad vigente": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}"},
+        "No iniciado, Prefactibilidad en curso": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}"},
+        "No iniciado, Prefactibilidad no solicitada/vencida": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}"},
         "En curso": {"start": "{INICIO_PERMISO_VUELCO_EN_CURSO}", "end": "{FIN_PERMISO_VUELCO_EN_CURSO}"},
-        "Vigente": {"start": "{INICIO_PERMISO_VUELCO_VIGENTE}", "end": "{FIN_PERMISO_VUELCO_VIGENTE}"}
+        "Vigente": {"start": "{INICIO_PERMISO_VUELCO_VIGENTE}", "end": "{FIN_PERMISO_VUELCO_VIGENTE}"},
+        "Aptitud de Obra en curso": {"start": "{INICIO_APTITUD_VUELCO_EN_CURSO}", "end": "{FIN_APTITUD_VUELCO_EN_CURSO}"},
+        "Aptitud de Obra vigente": {"start": "{INICIO_APTITUD_VUELCO_VIGENTE}", "end": "{FIN_APTITUD_VUELCO_VIGENTE}"},
+        "Aptitud de Obra vigente - Permiso en curso": {"start": "{INICIO_APTITUD_VUELCO_VIGENTE_FASE3_EN_CURSO}", "end": "{FIN_APTITUD_VUELCO_VIGENTE_FASE3_EN_CURSO}"},
+        "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_VUELCO_VENCIDA}", "end": "{FIN_APTITUD_VUELCO_VENCIDA}"},
+        "Vencido": {"start": "{INICIO_PERMISO_VUELCO_VENCIDO}", "end": "{FIN_PERMISO_VUELCO_VENCIDO}"},
+    },
     },
     "ULTIMOVUELCO_STATUS": {
         "tiene ultimo permiso vuelco": {"start": "{INICIO_ULTIMO_PERMISO_VUELCO_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_VUELCO_OBTENIDO}"},
@@ -343,11 +356,17 @@ MARCADORES_CONDICIONALES = {
     },
     "EXPLOTACION_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_ EXPLOTACION_NO_INICIADO_POR_CHI0}"},
-        "No iniciada, tiene Prefactibilida vigente": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VIGENTE}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VIGENTE}"},
-        "No iniciada, Prefactibilidad en curso": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_EN_CURSO}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_EN_CURSO}"},
-        "No iniciada, Prefactibilidad vencida o no iniciada": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}"},
+        "No iniciado, Prefactibilidad vigente": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VIGENTE}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VIGENTE}"},
+        "No iniciado, Prefactibilidad en curso": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_EN_CURSO}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_EN_CURSO}"},
+        "No iniciado, Prefactibilidad no solicitada/vencida": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}", "end": "{FIN_PERMISO_EXPLOTACION_NO_INICIADO_PREFA_VENCIDA_NO_INICIADA}"},
         "En curso": {"start": "{INICIO_PERMISO_EXPLOTACION_EN_CURSO}", "end": "{FIN_PERMISO_EXPLOTACION_EN_CURSO}"},
-        "Vigente": {"start": "{INICIO_PERMISO_EXPLOTACION_VIGENTE}", "end": "{FIN_PERMISO_EXPLOTACION_VIGENTE}"}
+        "Vigente": {"start": "{INICIO_PERMISO_EXPLOTACION_VIGENTE}", "end": "{FIN_PERMISO_EXPLOTACION_VIGENTE}"},
+        "Aptitud de Obra en curso": {"start": "{INICIO_APTITUD_EXPLOTACION_EN_CURSO}", "end": "{FIN_APTITUD_EXPLOTACION_EN_CURSO}"},
+        "Aptitud de Obra vigente": {"start": "{INICIO_APTITUD_EXPLOTACION_VIGENTE}", "end": "{FIN_APTITUD_EXPLOTACION_VIGENTE}"},
+        "Aptitud de Obra vigente - Permiso en curso": {"start": "{INICIO_APTITUD_EXPLOTACION_VIGENTE_FASE3_EN_CURSO}", "end": "{FIN_APTITUD_EXPLOTACION_VIGENTE_FASE3_EN_CURSO}"},
+        "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_EXPLOTACION_VENCIDA}", "end": "{FIN_APTITUD_EXPLOTACION_VENCIDA}"},
+        "Vencido": {"start": "{INICIO_PERMISO_EXPLOTACION_VENCIDO}", "end": "{FIN_PERMISO_EXPLOTACION_VENCIDO}"},
+    },
     },
     "ULTIMOEXPLOTACION_STATUS": {
         "tiene ultimo permiso explotacion": {"start": "{INICIO_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}"},
