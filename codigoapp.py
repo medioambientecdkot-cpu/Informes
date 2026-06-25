@@ -1,6 +1,7 @@
 import streamlit as st
 import re
 import io
+import json as json_lib
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -576,6 +577,188 @@ if uploaded_file is not None:
     st.sidebar.success("✅ Plantilla cargada correctamente.")
 elif st.session_state['uploaded_file'] is None:
     st.sidebar.warning("Por favor, sube una plantilla DOCX para empezar.")
+
+# ==========================================
+# BLOQUE A AGREGAR EN EL SIDEBAR
+# Pegarlo DESPUÉS de la sección de file_uploader
+# y ANTES de los tabs
+# ==========================================
+
+# --- JSON desde Airtable ---
+st.sidebar.markdown("---")
+st.sidebar.header("Cargar datos desde Airtable")
+json_input = st.sidebar.text_area(
+    "Pegá el JSON generado desde Airtable:",
+    height=200,
+    placeholder='{\n  "HAB_STATUS": "cumple",\n  "CNCA_STATUS": "vigente",\n  ...\n}',
+    key="json_airtable_input"
+)
+
+if st.sidebar.button("📥 Pre-completar formulario", key="btn_cargar_json"):
+    if json_input.strip():
+        try:
+            import json as json_lib
+            datos = json_lib.loads(json_input)
+            
+            # Campos auto-calculados — mostrar advertencia
+            auto_fields = datos.get('_auto', {})
+            
+            # ── Mapeo JSON → session_state keys de Streamlit ──────────
+
+            # Habilitación Municipal
+            if datos.get('HAB_STATUS'):        st.session_state['hab_STATUS']               = datos['HAB_STATUS']
+            if datos.get('FECHA_HABILITACION'):st.session_state['hab_FECHA']                = datos['FECHA_HABILITACION']
+            if datos.get('EXPEDIENTE_HABILITACION'): st.session_state['hab_EXPEDIENTE']     = datos['EXPEDIENTE_HABILITACION']
+
+            # CNCA
+            if datos.get('CNCA_STATUS'):       st.session_state['cnca_STATUS']              = datos['CNCA_STATUS']
+            if datos.get('FECHA_CNCA'):        st.session_state['cnca_FECHA']               = datos['FECHA_CNCA']
+            if datos.get('VENCIMIENTO_CNCA'):  st.session_state['cnca_VENCIMIENTO']         = datos['VENCIMIENTO_CNCA']
+            if datos.get('EXPEDIENTE_CNCA'):   st.session_state['cnca_EXPEDIENTE']          = datos['EXPEDIENTE_CNCA']
+            if datos.get('DISPO_CNCA'):        st.session_state['cnca_DISPO']               = datos['DISPO_CNCA']
+
+            # CAAP
+            if datos.get('CAAP_STATUS'):       st.session_state['caap_CAAP_LOGICA_ESTADOS'] = datos['CAAP_STATUS']
+            if datos.get('FECHA_CAAP'):        st.session_state['caap_FECHA']               = datos['FECHA_CAAP']
+            if datos.get('EXP_CAAP'):          st.session_state['caap_EXP']                 = datos['EXP_CAAP']
+            if datos.get('DISPO_CAAP'):        st.session_state['caap_DISPO']               = datos['DISPO_CAAP']
+            if datos.get('VTO_CAAP'):          st.session_state['caap_VTO']                 = datos['VTO_CAAP']
+
+            # CAAF
+            if datos.get('CAAF_STATUS'):       st.session_state['caaf_CAAF_LOGICA_ESTADOS'] = datos['CAAF_STATUS']
+            if datos.get('FECHA_CAAF'):        st.session_state['caaf_FECHA']               = datos['FECHA_CAAF']
+            if datos.get('EXPEDIENTE_CAAF'):   st.session_state['caaf_EXPEDIENTE']          = datos['EXPEDIENTE_CAAF']
+            if datos.get('DISPO_CAAF'):        st.session_state['caaf_DISPO']               = datos['DISPO_CAAF']
+            if datos.get('VENCIMIENTO_CAAF'):  st.session_state['caaf_VENCIMIENTO']         = datos['VENCIMIENTO_CAAF']
+
+            # Renovación CAA
+            if datos.get('RENOVACION_CAA_STATUS'):     st.session_state['renovacion_caa_STATUS']      = datos['RENOVACION_CAA_STATUS']
+            if datos.get('EXPEDIENTE_RENOVACION_CAA'): st.session_state['renovacion_caa_EXPEDIENTE']  = datos['EXPEDIENTE_RENOVACION_CAA']
+            if datos.get('DISPO_RENOVACION_CAA'):      st.session_state['renovacion_caa_DISPO']       = datos['DISPO_RENOVACION_CAA']
+            if datos.get('FECHA_RENOVACION_CAA'):      st.session_state['renovacion_caa_FECHA']       = datos['FECHA_RENOVACION_CAA']
+            if datos.get('FECHA_VTO_RENOVACION'):      st.session_state['renovacion_vto_FECHA']       = datos['FECHA_VTO_RENOVACION']
+
+            # Último CAA historial
+            if datos.get('ULTIMO_CAA_STATUS'):     st.session_state['widget_estado_historial_caa'] = datos['ULTIMO_CAA_STATUS']
+            if datos.get('EXPEDIENTE_ULTIMO_CAA'): st.session_state['input_hist_exp_caa_u']        = datos['EXPEDIENTE_ULTIMO_CAA']
+            if datos.get('DISPO_ULTIMO_CAA'):      st.session_state['input_hist_dispo_caa_u']      = datos['DISPO_ULTIMO_CAA']
+
+            # LEGA
+            if datos.get('LEGA_STATUS'):                    st.session_state['lega_STATUS']      = datos['LEGA_STATUS']
+            if datos.get('FECHA_OBTENCION_LEGA'):           st.session_state['lega_FECHA']        = datos['FECHA_OBTENCION_LEGA']
+            if datos.get('EXPEDIENTE_LEGA'):                st.session_state['lega_EXPEDIENTE']   = datos['EXPEDIENTE_LEGA']
+            if datos.get('DISPO_LEGA_VIGENTE'):             st.session_state['lega_DISPOSICION']  = datos['DISPO_LEGA_VIGENTE']
+            if datos.get('FECHA_VENCIMIENTO_LEGA_VIGENTE'): st.session_state['lega_VTO']          = datos['FECHA_VENCIMIENTO_LEGA_VIGENTE']
+
+            # Última LEGA historial
+            if datos.get('ULTIMA_LEGA_STATUS'):          st.session_state['widget_historial_pdeg_status'] = datos['ULTIMA_LEGA_STATUS']
+            if datos.get('EXPEDIENTE_ULTIMA_LEGA_PDEG'): st.session_state['key_hist_lega_exp_u']          = datos['EXPEDIENTE_ULTIMA_LEGA_PDEG']
+
+            # Residuos Especiales / CHE
+            if datos.get('RESIDUOS_ESPECIALES_STATUS'): st.session_state['rree_STATUS']     = datos['RESIDUOS_ESPECIALES_STATUS']
+            if datos.get('CHE_STATUS'):                 st.session_state['rree_CHE_STATUS']  = datos['CHE_STATUS']
+            if datos.get('ANIO_CHE'):                   st.session_state['rree_ANIO_CHE']    = datos['ANIO_CHE']
+
+            # GIRSU
+            if datos.get('GIRSU_STATUS'): st.session_state['rree_GIRSU_STATUS'] = datos['GIRSU_STATUS']
+
+            # Patogénicos
+            if datos.get('PATOGENICOS_STATUS'):      st.session_state['rree_PATOGENICOS_STATUS'] = datos['PATOGENICOS_STATUS']
+            if datos.get('PATOGENICOS_EXPEDIENTE'):  st.session_state['PATOGENICOS_EXP']         = datos['PATOGENICOS_EXPEDIENTE']
+            if datos.get('PATOGENICOS_FECHA'):       st.session_state['PATO_FECHA']               = datos['PATOGENICOS_FECHA']
+
+            # ASP
+            if datos.get('ASP_STATUS'):             st.session_state['asp_STATUS']       = datos['ASP_STATUS']
+            if datos.get('VENCIMIENTO_ASP'):        st.session_state['asp_VTO']          = datos['VENCIMIENTO_ASP']
+            if datos.get('EXPEDIENTE_ASP'):         st.session_state['asp_EXPEDIENTE']   = datos['EXPEDIENTE_ASP']
+            if datos.get('VALVULAS_STATUS'):        st.session_state['asp_VALVULAS_STATUS'] = datos['VALVULAS_STATUS']
+            if datos.get('VENCIMIENTO_CALIBRACION_ASP'): st.session_state['asp_VTO_VALVULAS'] = datos['VENCIMIENTO_CALIBRACION_ASP']
+
+            # ADA — Prefactibilidad
+            if datos.get('ADA_STATUS'):          st.session_state['ada_STATUS']    = datos['ADA_STATUS']
+            if datos.get('FECHA_PREFA'):         st.session_state['ada_FECHA']     = datos['FECHA_PREFA']
+            if datos.get('EXPEDIENTE_PREFA'):    st.session_state['ada_EXP']       = datos['EXPEDIENTE_PREFA']
+            if datos.get('DISPO_PREFA'):         st.session_state['ada_DISP_PREF'] = datos['DISPO_PREFA']
+            if datos.get('VTO_PREFACTIBILIDAD'): st.session_state['ada_VTO']       = datos['VTO_PREFACTIBILIDAD']
+
+            # ADA — Hidráulica
+            if datos.get('HIDRAULICA_STATUS'):                              st.session_state['HIDRAULICA_STATUS']        = datos['HIDRAULICA_STATUS']
+            if datos.get('FECHA_PERMISO_HIDRAULICA_VIGENTE'):               st.session_state['HIDRAULICA_FECHA']         = datos['FECHA_PERMISO_HIDRAULICA_VIGENTE']
+            if datos.get('RESOL_CONSTANCIA_HIDRAULICA_VIGENTE'):            st.session_state['HIDRAULICA_RESOLUCION']    = datos['RESOL_CONSTANCIA_HIDRAULICA_VIGENTE']
+            if datos.get('EXPEDIENTE_CONSTANCIA_HIDRÁULICA_VIGENTE'):       st.session_state['HIDRAULICA_EXPEDIENTE']    = datos['EXPEDIENTE_CONSTANCIA_HIDRÁULICA_VIGENTE']
+            if datos.get('ULTIMOHIDRAULICA_STATUS'):                        st.session_state['ULTIMOHIDRAULICA_STATUS']  = datos['ULTIMOHIDRAULICA_STATUS']
+            if datos.get('FECHA_CONSTANCIA_HIDRAULICA_OBTENIDA'):           st.session_state['ada_fecha_ult_hidra']      = datos['FECHA_CONSTANCIA_HIDRAULICA_OBTENIDA']
+            if datos.get('RESOL_CONSTANCIA_HIDRAULICA_OBTENIDA'):           st.session_state['ada_resoc_ult_hidra']      = datos['RESOL_CONSTANCIA_HIDRAULICA_OBTENIDA']
+            if datos.get('EXPEDIENTE_CONSTANCIA_HIDRAULICA_OBTENIDA'):      st.session_state['ada_exp_ult_hidra']        = datos['EXPEDIENTE_CONSTANCIA_HIDRAULICA_OBTENIDA']
+            if datos.get('FECHA_VENCIMIENTO_CONSTANCIA_HIDRAULICA_OBTENIDO'): st.session_state['ada_hidra_ult_vto']     = datos['FECHA_VENCIMIENTO_CONSTANCIA_HIDRAULICA_OBTENIDO']
+
+            # ADA — Vuelco
+            if datos.get('VUELCO_STATUS'):                          st.session_state['VUELCO_STATUS']              = datos['VUELCO_STATUS']
+            if datos.get('FECHA_PERMISO_VUELCO_VIGENTE'):           st.session_state['VUELCO_FECHA']               = datos['FECHA_PERMISO_VUELCO_VIGENTE']
+            if datos.get('RESOL_CONSTANCIA_VUELCO_VIGENTE'):        st.session_state['VUELCO_RESOLUCION']          = datos['RESOL_CONSTANCIA_VUELCO_VIGENTE']
+            if datos.get('EXPEDIENTE_CONSTANCIA_VUELCO_VIGENTE'):   st.session_state['VUELCO_EXPEDIENTE']          = datos['EXPEDIENTE_CONSTANCIA_VUELCO_VIGENTE']
+            if datos.get('ULTIMOVUELCO_STATUS'):                    st.session_state['ULTIMOVUELCO_STATUS']        = datos['ULTIMOVUELCO_STATUS']
+            if datos.get('FECHA_PERMISO_VUELCO_OBTENIDO'):          st.session_state['ada_fecha_ult_vuelco']       = datos['FECHA_PERMISO_VUELCO_OBTENIDO']
+            if datos.get('RESOL_PERMISO_VUELCO_OBTENIDO'):          st.session_state['ada_resoc_ult_vuelco']       = datos['RESOL_PERMISO_VUELCO_OBTENIDO']
+            if datos.get('EXPEDIENTE_PERMISO_VUELCO_OBTENIDO'):     st.session_state['ada_exp_ult_vuelco']         = datos['EXPEDIENTE_PERMISO_VUELCO_OBTENIDO']
+            if datos.get('FECHA_VENCIMIENTO_PERMISO_VUELCO_OBTENIDO'): st.session_state['ada_vuelco_ult_vto']     = datos['FECHA_VENCIMIENTO_PERMISO_VUELCO_OBTENIDO']
+
+            # ADA — Explotación
+            if datos.get('EXPLOTACION_STATUS'):                             st.session_state['EXPLOTACION_STATUS']          = datos['EXPLOTACION_STATUS']
+            if datos.get('FECHA_PERMISO_EXPLOTACION_VIGENTE'):              st.session_state['EXPLOTACION_FECHA']            = datos['FECHA_PERMISO_EXPLOTACION_VIGENTE']
+            if datos.get('RESOL_CONSTANCIA_EXPLOTACION_VIGENTE'):           st.session_state['EXPLOTACION_RESOLUCION']       = datos['RESOL_CONSTANCIA_EXPLOTACION_VIGENTE']
+            if datos.get('EXPEDIENTE_CONSTANCIA_EXPLOTACION_VIGENTE'):      st.session_state['EXPLOTACION_EXPEDIENTE']       = datos['EXPEDIENTE_CONSTANCIA_EXPLOTACION_VIGENTE']
+            if datos.get('ULTIMOEXPLOTACION_STATUS'):                       st.session_state['ULTIMOEXPLOTACION_STATUS']     = datos['ULTIMOEXPLOTACION_STATUS']
+            if datos.get('FECHA_PERMISO_EXPLOTACION_OBTENIDO'):             st.session_state['ada_fecha_ult_exp']            = datos['FECHA_PERMISO_EXPLOTACION_OBTENIDO']
+            if datos.get('RESOL_PERMISO_EXPLOTACION_OBTENIDO'):             st.session_state['ada_resoc_ult_exp']            = datos['RESOL_PERMISO_EXPLOTACION_OBTENIDO']
+            if datos.get('EXPEDIENTE_PERMISO_EXPLOTACION_OBTENIDO'):        st.session_state['ada_exp_ult_exp']              = datos['EXPEDIENTE_PERMISO_EXPLOTACION_OBTENIDO']
+            if datos.get('FECHA_VENCIMIENTO_PERMISO_EXPLOTACION_OBTENIDO'): st.session_state['ada_exp_ult_vto']             = datos['FECHA_VENCIMIENTO_PERMISO_EXPLOTACION_OBTENIDO']
+
+            # ACUMAR
+            if datos.get('ACUMAR_STATUS'):               st.session_state['acumar_STATUS'] = datos['ACUMAR_STATUS']
+            if datos.get('ACUMAR_NIA'):                  st.session_state['acumar_NIA']    = datos['ACUMAR_NIA']
+            if datos.get('PLANDEADECUACIONACUMAR_STATUS'): st.session_state['PLANDEADECUACIONACUMAR_STATUS'] = datos['PLANDEADECUACIONACUMAR_STATUS']
+
+            # AySA
+            if datos.get('AYSA_STATUS'): st.session_state['aysa_STATUS'] = datos['AYSA_STATUS']
+
+            # SE
+            if datos.get('INSCRIPCION_1102'):                   st.session_state['se_1102_STATUS']               = datos['INSCRIPCION_1102']
+            if datos.get('NUMERO_SE'):                          st.session_state['se_NUM_SE']                    = datos['NUMERO_SE']
+            if datos.get('SE_EXPEDIENTE'):                      st.session_state['se_EXP']                       = datos['SE_EXPEDIENTE']
+            if datos.get('AUDITORIA_404'):                      st.session_state['se_404_STATUS']                = datos['AUDITORIA_404']
+            if datos.get('CERTIFICADO_TANQUES_AEREOS_VTO'):     st.session_state['se_VTO_AEREOS']                = datos['CERTIFICADO_TANQUES_AEREOS_VTO']
+            if datos.get('CERTIFICADO_TANQUES_SUB_VTO'):        st.session_state['se_VTO_SUBTERRANEOS']          = datos['CERTIFICADO_TANQUES_SUB_VTO']
+            if datos.get('SE_CERTIFICADO_SUB_HERMETICIDAD'):    st.session_state['se_VTO_SUBTERRANEOS_HERMETICIDAD'] = datos['SE_CERTIFICADO_SUB_HERMETICIDAD']
+            if datos.get('SE_CERTIFICADO_TAMBORES_VENCIMIENTO'): st.session_state['se_VTO_TAMBORES']            = datos['SE_CERTIFICADO_TAMBORES_VENCIMIENTO']
+            if datos.get('INSCRIPCION_277'):                    st.session_state['se_277_STATUS']                = datos['INSCRIPCION_277']
+            if datos.get('AUDITORIA277_VENCIMIENTO'):           st.session_state['se_277_VTO']                   = datos['AUDITORIA277_VENCIMIENTO']
+
+            # RENPRE
+            if datos.get('RENPRE_STATUS'):      st.session_state['renpre_STATUS'] = datos['RENPRE_STATUS']
+            if datos.get('NUMERO_RENPRE'):      st.session_state['renpre_NUM']    = datos['NUMERO_RENPRE']
+            if datos.get('VENCIMIENTO_RENPRE'): st.session_state['renpre_VTO']    = datos['VENCIMIENTO_RENPRE']
+
+            # Seguro
+            if datos.get('SEGURO_STATUS'):  st.session_state['seguro_STATUS']    = datos['SEGURO_STATUS']
+            if datos.get('NUMERO_POLIZA'):  st.session_state['seguro_POLIZA_NUM'] = datos['NUMERO_POLIZA']
+            if datos.get('VTO_POLIZA'):     st.session_state['seguro_POLIZA_VTO'] = datos['VTO_POLIZA']
+
+            # ── Mostrar resultado ──────────────────────────────────────
+            st.sidebar.success("✅ Formulario pre-completado correctamente.")
+
+            if auto_fields:
+                st.sidebar.warning(
+                    "⚠️ **Verificar estos campos — calculados automáticamente:**\n\n" +
+                    "\n".join([f"• **{k}**: {datos.get(k, '')}" for k in auto_fields])
+                )
+
+            st.rerun()
+
+        except Exception as e:
+            st.sidebar.error(f"❌ JSON inválido: {e}")
+    else:
+        st.sidebar.warning("Pegá el JSON antes de cargar.")
 
 # Tabs for navigation
 tab_titles = [
