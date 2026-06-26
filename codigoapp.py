@@ -373,7 +373,6 @@ MARCADORES_CONDICIONALES = {
         "No aplica": {"start": "{INICIO_AYSA_NO_APLICA}", "end": "{FIN_AYSA_NO_APLICA}"},
     }
 }
-}
 # --- INICIALIZACIÓN DEL ESTADO DE SESIÓN ---
 if 'hallazgos_widgets_list' not in st.session_state:
     st.session_state['hallazgos_widgets_list'] = []
