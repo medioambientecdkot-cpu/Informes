@@ -330,13 +330,11 @@ MARCADORES_CONDICIONALES = {
         "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_HIDRAULICA_VENCIDA}", "end": "{FIN_APTITUD_HIDRAULICA_VENCIDA}"},
         "Vencido": {"start": "{INICIO_CONSTANCIA_HIDRAULICA_VENCIDA}", "end": "{FIN_CONSTANCIA_HIDRAULICA_VENCIDA}"},
     },
-    },
     "ULTIMOHIDRAULICA_STATUS": {
         "tiene ultimo permiso hidraulica": {"start": "{INICIO_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}", "end": "{FIN_ULTIMA_CONSTANCIA_HIDRAULICA_OBTENIDO}"},
         "no tiene ultimo permiso de hidraulica": {"start": "{INICIO_NOTIENE_HIDRA}", "end": "{FIN_NOTIENE_HIDRA}"}
     },
     "VUELCO_STATUS": {
-       "VUELCO_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_POR_CHI0}"},
         "No iniciado, Prefactibilidad vigente": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_VIGENTE}"},
         "No iniciado, Prefactibilidad en curso": {"start": "{INICIO_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}", "end": "{FIN_PERMISO_VUELCO_NO_INICIADO_PREFA_EN_CURSO}"},
@@ -349,10 +347,9 @@ MARCADORES_CONDICIONALES = {
         "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_VUELCO_VENCIDA}", "end": "{FIN_APTITUD_VUELCO_VENCIDA}"},
         "Vencido": {"start": "{INICIO_PERMISO_VUELCO_VENCIDO}", "end": "{FIN_PERMISO_VUELCO_VENCIDO}"},
     },
-    },
     "ULTIMOVUELCO_STATUS": {
         "tiene ultimo permiso vuelco": {"start": "{INICIO_ULTIMO_PERMISO_VUELCO_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_VUELCO_OBTENIDO}"},
-        "no tiene ultimo permiso de vuelco": { "start": "{INICIO_NOTIENE_VUELCO}", "end": "{FIN_NOTIENE_VUELCO}"}
+        "no tiene ultimo permiso de vuelco": {"start": "{INICIO_NOTIENE_VUELCO}", "end": "{FIN_NOTIENE_VUELCO}"}
     },
     "EXPLOTACION_STATUS": {
         "Tramite no iniciado porque tiene CHI 0": {"start": "{INICIO_PERMISO_EXPLOTACION_NO_INICIADO_POR_CHI0}", "end": "{FIN_PERMISO_ EXPLOTACION_NO_INICIADO_POR_CHI0}"},
@@ -367,14 +364,14 @@ MARCADORES_CONDICIONALES = {
         "Aptitud de Obra vencida": {"start": "{INICIO_APTITUD_EXPLOTACION_VENCIDA}", "end": "{FIN_APTITUD_EXPLOTACION_VENCIDA}"},
         "Vencido": {"start": "{INICIO_PERMISO_EXPLOTACION_VENCIDO}", "end": "{FIN_PERMISO_EXPLOTACION_VENCIDO}"},
     },
-    },
     "ULTIMOEXPLOTACION_STATUS": {
         "tiene ultimo permiso explotacion": {"start": "{INICIO_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}", "end": "{FIN_ULTIMO_PERMISO_EXPLOTACION_OBTENIDO}"},
-        "no tiene ultimo permiso de explotacion":  { "start":"{INICIO_NOTIENE_EXP}", "end": "{FIN_NOTIENE_EXP}"}
+        "no tiene ultimo permiso de explotacion": {"start": "{INICIO_NOTIENE_EXP}", "end": "{FIN_NOTIENE_EXP}"}
     },
     "AYSA_STATUS": {
         "Aplica": {"start": "{INICIO_APLICA_AYSA}", "end": "{FIN_APLICA_AYSA}"},
         "No aplica": {"start": "{INICIO_AYSA_NO_APLICA}", "end": "{FIN_AYSA_NO_APLICA}"},
+    }
 }
 }
 # --- INICIALIZACIÓN DEL ESTADO DE SESIÓN ---
